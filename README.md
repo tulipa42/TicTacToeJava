@@ -11,8 +11,24 @@ After compiling, just run
 ```
 
   
+## Running Tests
+
+To run tests, run the following command
+
+```bash
+  java Test
+```
+
+
+## Compiling
+
+To compile, just run
+
+```bash
+  javac *.java
+```
+
+  
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
-
-  
