@@ -26,6 +26,7 @@ public class Game {
         GameHelper gh = new GameHelper();
 
         System.out.println("Get ready to play TicTacToe!");
+        System.out.println(" ");
         String p1Name = gh.getUserInput("Player 1, what is your name?");
         String p2Name = gh.getUserInput("Player 2, what is your name?");
         Player p1 = new Player(p1Name);
@@ -36,11 +37,20 @@ public class Game {
 
         Board board = new Board();
         board.displayBoard();
+        System.out.println("The numpad keys correspond to the squares. So '7' is the top-left square.");
+
+        String move;
+        boolean isValidMove;
 
         while (true) {
-            int move = Integer.parseInt(gh.getUserInput(game.currentPlayer.name + ", what is your move? [0-8]"));
+            isValidMove = false;
 
-            board.putPiece(game.currentPlayer.token, move);
+            while (!isValidMove) {
+                move = gh.getUserInput(game.currentPlayer.name + ", what is your move? ");
+                isValidMove = board.isValidMove(move);
+                if (isValidMove)
+                    board.putPiece(game.currentPlayer.token, Integer.parseInt(move));
+            }            
 
             board.displayBoard();
 

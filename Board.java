@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 public class Board {
     private char [] squares = {' ', ' ', ' ',' ', ' ', ' ',' ', ' ', ' '};
 
@@ -9,7 +11,51 @@ public class Board {
         this.squares = squares;
     }
 
+    public boolean isValidMove(String squareNumpad) {
+
+        try {
+            int squareNumPadInt = Integer.parseInt(squareNumpad);
+            int square = changeNumpadInSquare(squareNumPadInt);
+
+            if (square >= squares.length) {
+                System.out.println("Square not on the board. Try again.");
+                return false;
+            }
+            if (squares[square] != ' ') {
+                System.out.println("Square already occupied. Try again.");
+                return false;
+            }
+            return true;
+
+        } catch (NumberFormatException e) {
+            System.out.println("Only numbers, please. Try again.");
+            return false;
+        }
+
+
+    }
+
+    public static int changeNumpadInSquare(int numpad) {
+        HashMap<Integer, Integer> numPadMap = new HashMap<Integer, Integer>();
+
+        numPadMap.put(7,0);
+        numPadMap.put(8,1);
+        numPadMap.put(9,2);
+        numPadMap.put(4,3);
+        numPadMap.put(5,4);
+        numPadMap.put(6,5);
+        numPadMap.put(1,6);
+        numPadMap.put(2,7);
+        numPadMap.put(3,8);
+
+        if (numPadMap.get(numpad) == null)
+            return 9;
+
+        return numPadMap.get(numpad);
+    }
+
     public void putPiece(char token, int square) {
+
         if (squares[square] == ' ') {
             squares[square] = token;
         }
